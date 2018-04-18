@@ -69,9 +69,14 @@ class NewVisitorTest(LiveServerTestCase):
         # Edith wonders whether the site will remember her list. Then she sees
         # that the site has generated a unique URL for her -- there is some
         # explanatory text to that effect.
-        self.fail('Finish the test!')
+        ediths_list_url = self.browser.current_url
         
         # She visits that URL - her to-do list is still there.
+        self.browser.quit()
+        self.browser = webdriver.Firefox()
+        self.browser.get(ediths_list_url)
+        self.wait_for_row_in_list_table('1: Buy peacock feathers')
+        self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
         
         # Satisfied, she goes back to sleep
         

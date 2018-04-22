@@ -73,6 +73,7 @@ class NewVisitorTest(LiveServerTestCase):
         ediths_list_url = self.browser.current_url
         
         # She visits that URL - her to-do list is still there.
+        self.browser.refresh()
         self.browser.quit()
         self.browser = webdriver.Firefox()
         self.browser.get(ediths_list_url)
@@ -121,6 +122,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         ## We use a new browser session to make sure that no information
         ## of Edith's is coming through from cookies etc
+        self.browser.refresh()
         self.browser.quit()
         self.browser = webdriver.Firefox()
 
